@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondActivity">
+            //隐式intent
+            <intent-filter>
+                <action android:name="com.example.bbw.activitytest.ACTION_START"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
