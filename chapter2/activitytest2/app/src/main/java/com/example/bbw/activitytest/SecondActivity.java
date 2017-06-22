@@ -14,6 +14,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
+        //首先得到intent，随后获得传输过来的数据
         final Intent intent = getIntent();
         String data = intent.getStringExtra("extra_data");
         Log.d("SecondActivity", data);
@@ -22,6 +23,7 @@ public class SecondActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //向上传输数据，setResult（返回处理的结果，数据）
                 Intent intent = new Intent(SecondActivity.this,MainActivity.class);
                 intent.putExtra("return_data","hello");
                 setResult(RESULT_OK,intent);

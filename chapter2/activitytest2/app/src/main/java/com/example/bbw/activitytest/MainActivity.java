@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //button2回调
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
+            //判断请求码，随后获得传输过来的数据
             case 1:
                 if (resultCode == RESULT_OK){
                     String returnData  = data.getStringExtra("return_data");
@@ -61,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 //向下一个活动传输数据
+                //首先创建intent,并向其中添加需要传输的数据，随后开始activity
                 String data="hello";
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
                 intent.putExtra("extra_data",data);
+                //第二个参数是请求码，用于在之后的回调中判断数据的来源
                 startActivityForResult(intent,1);
 
                 //销毁活动
