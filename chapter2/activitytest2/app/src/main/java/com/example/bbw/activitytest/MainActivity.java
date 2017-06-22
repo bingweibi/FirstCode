@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,20 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String returnData  = data.getStringExtra("return_data");
+                    Log.d("MainActivity",returnData);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +51,23 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 //利用intent实现访问百度主页
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://www.baidu.com"));
-                startActivity(intent);
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse("http://www.baidu.com"));
+//                startActivity(intent);
 
                 //利用intent实现拨号功能
 //                Intent intent = new Intent(Intent.ACTION_CALL);
 //                intent.setData(Uri.parse("tel:10086"));
 //                startActivity(intent);
 
+                //向下一个活动传输数据
+                String data="hello";
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("extra_data",data);
+                startActivityForResult(intent,1);
+
                 //销毁活动
-                finish();
+//                finish();
             }
         });
     }
