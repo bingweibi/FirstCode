@@ -1,11 +1,23 @@
 package com.example.bbw.coolweather2.util;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import com.example.bbw.coolweather2.db.CoolWeatherDB;
 import com.example.bbw.coolweather2.model.City;
 import com.example.bbw.coolweather2.model.County;
 import com.example.bbw.coolweather2.model.Province;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * xml格式数据解析和处理
@@ -77,5 +89,40 @@ public class Utility {
                 return true;
             }
         }return false;
+    }
+
+    //解析和处理服务器返回的JSON数据，并将解析出来的数据存储到本地
+    public static void handlerWeatherResponse(Context context,String response){
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONObject weatherInfo = jsonObject.getJSONObject("weatherinfo");
+            String cityName = weatherInfo.getString("city");
+            String weatherCode = weatherInfo.getString("cityid");
+            String temp1 = weatherInfo.getString("temp1");
+            String temp2 = weatherInfo.getString("temp2");
+            String weatherDesp = weatherInfo.getString("weather");
+            String publishTime = weatherInfo.getString("ptime");
+            saveWeatherInfo(context,cityName,weatherCode,temp1,temp2,weatherDesp,publishTime);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //将服务器返回的天气信息存储到sharedPreferences中
+    @TargetApi(Build.VERSION_CODES.N)
+    private static void saveWeatherInfo(Context context, String cityName, String weatherCode, String temp1, String temp2, String weatherDesp, String publishTime) {
+
+        SimpleDateFormat simpleDateFormate = new SimpleDateFormat("yyyy年m月d日", Locale.CHINA);
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putBoolean("city_selected",true);
+        editor.putString("city_name",cityName);
+        editor.putString("weather_code",weatherCode);
+        editor.putString("temp1",temp1);
+        editor.putString("temp2",temp2);
+        editor.putString("weather_Desp",weatherDesp);
+        editor.putString("publish_time",publishTime);
+        editor.putString("current_date",simpleDateFormate.format(new Date()));
+        editor.commit();
     }
 }
