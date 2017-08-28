@@ -1,15 +1,17 @@
-package com.example.bbw.coolweather2.model;
+package com.example.bbw.coolweather2.db;
+
+import org.litepal.crud.DataSupport;
 
 /**
  * City的实体类，方便对City的操作
  * Created by bbw on 2017/7/3.
  */
 
-public class City {
+public class City extends DataSupport {
 
     private int id;
     private String cityName;
-    private String cityCode;
+    private int cityCode;
     private int provinceId;
 
     public int getId() {
@@ -28,11 +30,11 @@ public class City {
         this.cityName = cityName;
     }
 
-    public String getCityCode() {
+    public int getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(String cityCode) {
+    public void setCityCode(int cityCode) {
         this.cityCode = cityCode;
     }
 

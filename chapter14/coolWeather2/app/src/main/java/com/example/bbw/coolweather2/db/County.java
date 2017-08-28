@@ -1,15 +1,17 @@
-package com.example.bbw.coolweather2.model;
+package com.example.bbw.coolweather2.db;
+
+import org.litepal.crud.DataSupport;
 
 /**
  * County实体类，方便对County操作
  * Created by bbw on 2017/7/3.
  */
 
-public class County {
+public class County extends DataSupport{
 
     private int id;
     private String countyName;
-    private String countyCode;
+    private String weatherId;
     private int cityId;
 
     public int getId() {
@@ -28,12 +30,12 @@ public class County {
         this.countyName = countyName;
     }
 
-    public String getCountyCode() {
-        return countyCode;
+    public String getWeatherId() {
+        return weatherId;
     }
 
-    public void setCountyCode(String countyCode) {
-        this.countyCode = countyCode;
+    public void setWeatherId(String weatherId) {
+        this.weatherId = weatherId;
     }
 
     public int getCityId() {
