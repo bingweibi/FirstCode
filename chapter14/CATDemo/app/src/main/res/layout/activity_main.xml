@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bbw.catdemo.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/title_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="CAT"/>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp">
+
+        <TextView
+            android:id="@+id/first_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="您之前是否学习过数据结构？"
+            android:textSize="25sp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/first_question"
+            android:layout_margin="18dp">
+
+            <RadioButton
+                android:id="@+id/learned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有"
+                android:textSize="25sp" />
+            <RadioButton
+                android:id="@+id/learning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="没有"
+                android:textSize="25sp"/>
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/checkbox_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"
+            android:layout_centerHorizontal="true"
+            android:text="不再提醒"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/button_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_tips"
+            android:layout_centerHorizontal="true"
+            android:text="继续"/>
+
+    </RelativeLayout>
+    </LinearLayout>
