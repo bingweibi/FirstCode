@@ -24,10 +24,18 @@ public class MainActivity extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //判断是否授权
+
+                //判断是否授权,借助ContextCompat.checkSelfPermission()方法
+                //ContextCompat.checkSelfPermission()接受两参数：context和权限名
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                    //若没授权，则调用ActivityCompat.requestPermission()方法向用户授权
                     ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CALL_PHONE},1);
+
+                    //调用完requestPermissions()方法后，会弹出权限申请对话框，供用户选择
                 }else{
+
+                    //已授权，直接执行拨打电话
                     call();
                 }
             }

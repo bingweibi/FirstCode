@@ -20,10 +20,12 @@ public class MainActivity extends AppCompatActivity {
         Button  change_Text = (Button) findViewById(R.id.change_text);
         textView = (TextView) findViewById(R.id.text);
 
+        //消息接受处理的handler
         final Handler handler = new Handler(){
             public void handleMessage(Message message){
                 switch (message.what){
                     case UPDATE_TEXT:
+                        //在这里进行操作
                         textView.setText("nice to meet you");
                         break;
                     default:
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+
+                        //在子线程中发送更新文字的message
                         Message message = new Message();
                         message.what = UPDATE_TEXT;
                         handler.sendMessage(message);

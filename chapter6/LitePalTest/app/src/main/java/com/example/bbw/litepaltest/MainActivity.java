@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Button deleteData = (Button) findViewById(R.id.delete_data);
         Button queryData = (Button) findViewById(R.id.query_data);
 
+        //创建数据库
         createDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 book.save();
             }
         });
+
+        //更新数据库
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,12 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 book.updateAll("name = ? and author = ?","dsdfa","asferqyerag");
             }
         });
+
+        //删除数据
         deleteData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DataSupport.deleteAll(Book.class,"price < ?","15");
             }
         });
+
+        //查询数据
         queryData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

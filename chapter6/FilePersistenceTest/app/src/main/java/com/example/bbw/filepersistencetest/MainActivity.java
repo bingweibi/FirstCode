@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
         FileInputStream in;
         BufferedReader reader = null;
         StringBuilder content = new StringBuilder();
-
         try {
             in = openFileInput("TextData");
             reader = new BufferedReader(new InputStreamReader(in));
-            String line= "";
+            String line= " ";
             while ((line = reader.readLine())!= null){
                 content.append(line);
             }
@@ -57,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
             if (reader != null){
                 reader.close();
             }
-        }
-        return content.toString();
+        }return content.toString();
     }
 
     @Override

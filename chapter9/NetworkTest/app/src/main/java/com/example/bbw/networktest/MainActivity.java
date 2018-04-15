@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseJsonWithJSONObject(String responseData) {
+
         //首先将服务器返回的数据传入JSONArray对象中，遍历循环，取出的每个都是jsonObject对象
         try {
             JSONArray jsonArray = new JSONArray(responseData);
@@ -129,18 +130,22 @@ public class MainActivity extends AppCompatActivity {
     private void parseXMLWithPull(String responseData) {
 
         try {
-            //首先获取到一个XmlPullParserFactory的实例，再得到xmlPullParser的对象，再填入要解析的数据
+            //首先获取到一个XmlPullParserFactory的实例，
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            //再得到xmlPullParser的对象
             XmlPullParser xmlPullParser = factory.newPullParser();
+            //再填入要解析的数据
             xmlPullParser.setInput(new StringReader(responseData));
             //得到当前的解析事件
             int eventType = xmlPullParser.getEventType();
             String name = "";
             String id = "";
             String version = "";
+            //通过while循环进行解析
             while(eventType != XmlPullParser.END_DOCUMENT){
                 String nodeName = xmlPullParser.getName();
                 switch (eventType){
+                    //开始解析某个节点
                     case XmlPullParser.START_DOCUMENT: {
                         if ("id".equals(nodeName)) {
                             id = xmlPullParser.nextText();
@@ -153,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     }
+                    //完成对某个节点的解析
                     case XmlPullParser.END_DOCUMENT:{
                         if ("app".equals(nodeName)){
                             Log.d("MainActivity","id is "+ id);
@@ -164,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         break;
                 }
+                //获取下一个解析事件
                 eventType = xmlPullParser.next();
             }
         } catch (Exception e) {
@@ -173,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendRequestWithHttpConnection() {
 
+        //开启线程发送网络请求
         new Thread(new Runnable(){
 
             @Override
@@ -181,10 +189,14 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader read = null;
                 try {
                     URL url = new URL("https://www.baidu.com");
+                    //获取HttpURLConnection实例
                     httpUrlConnection = (HttpURLConnection) url.openConnection();
+                    //设置请求方法
                     httpUrlConnection.setRequestMethod("GET");
+                    //设置连接超时、读取超时
                     httpUrlConnection.setReadTimeout(8000);
                     httpUrlConnection.setConnectTimeout(8000);
+                    //获取服务器返回的输入流
                     InputStream in = httpUrlConnection.getInputStream();
                     //对获取到的输入流进行读取
                     read = new BufferedReader(new InputStreamReader(in));

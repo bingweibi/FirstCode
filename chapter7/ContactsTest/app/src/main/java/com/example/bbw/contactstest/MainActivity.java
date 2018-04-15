@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 contactsList.add(name + "\n" + number);
             }
+
+            //通知刷新ListView
             adapter.notifyDataSetChanged();
         }
 

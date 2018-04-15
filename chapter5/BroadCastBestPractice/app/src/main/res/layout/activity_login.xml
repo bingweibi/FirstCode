@@ -45,6 +45,23 @@
             android:hint="请输入密码"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/isChecked"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:text="Remember Password"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"

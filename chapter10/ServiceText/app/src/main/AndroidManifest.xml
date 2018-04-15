@@ -17,10 +17,13 @@
             </intent-filter>
         </activity>
 
+        <!--注册服务-->
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+
+        </service>
     </application>
 
 </manifest>

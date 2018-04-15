@@ -7,6 +7,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author bibingwei
+ */
 public class MainActivity extends AppCompatActivity {
 
 //    private String[] data={"apple","banana","orange","watermelon","pear","grape","pineapple","strawberry","cherry","mango",
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         initFruits();//初始化水果数据
         FruitAdapter fruitAdapter = new FruitAdapter(MainActivity.this,R.layout.fruit_item,fruitList);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(fruitAdapter);
     }
 

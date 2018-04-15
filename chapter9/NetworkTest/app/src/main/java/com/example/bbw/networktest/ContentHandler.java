@@ -16,6 +16,8 @@ public class ContentHandler extends DefaultHandler {
     private StringBuilder name;
     private StringBuilder version;
     private String nodeName;
+
+    //获取两节点之间的内容
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         super.characters(ch, start, length);
@@ -28,6 +30,7 @@ public class ContentHandler extends DefaultHandler {
         }
     }
 
+    //完成解析某节点调用
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         super.endElement(uri, localName, qName);
@@ -41,17 +44,20 @@ public class ContentHandler extends DefaultHandler {
         version.setLength(0);
     }
 
+    //开始XML解析调用
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         super.startElement(uri, localName, qName, attributes);
         nodeName = localName;
     }
 
+    //完成整个xml解析时调用
     @Override
     public void endDocument() throws SAXException {
         super.endDocument();
     }
 
+    //开始xml解析调用
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();

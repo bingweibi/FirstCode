@@ -14,7 +14,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
-        //首先得到intent，随后获得传输过来的数据
+        //首先得到intent，随后获得传输过来的数据，并打印
         final Intent intent = getIntent();
         String data = intent.getStringExtra("extra_data");
         Log.d("SecondActivity", data);
